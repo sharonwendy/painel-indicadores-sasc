@@ -12,6 +12,26 @@ import streamlit as st
 
 DATA = Path(__file__).parent / "data"
 
+# Cópia dos dados dentro do app: usada só se o CSV não estiver no repositório.
+DADOS_EMBUTIDOS = {
+    '01_bpc.csv': 'periodo,Pessoas com deficiência,Idosos,Total\n2019,54929,22365,78360\n2020,55501,22859,78360\n2021,56227,22993,79220\n2022,59592,24158,83750\n2023,67318,25996,93314\n2024,78104,27016,105120\n2025,83551,26593,110144\n2026/08,86346,27042,113388\n',
+    '02_bolsa_familia.csv': 'periodo,Pessoas beneficiárias,População estimada,Proporção (%)\n2019,1335479,3273227,40.8\n2020,1374183,3281480,41.88\n2021,1381779,3289290,42.01\n2023,1557992,3302519,47.18\n2024,1528107,3302519,46.27\n2025,1425449,3302519,43.16\n2026,1381331,3302519,41.83\n',
+    '03_desocupacao.csv': 'periodo,Taxa de desocupação (%)\n1º tri 2019,12.9\n2º tri 2019,13.0\n3º tri 2019,12.9\n4º tri 2019,13.3\n1º tri 2020,14.2\n2º tri 2022,9.4\n3º tri 2022,9.3\n4º tri 2022,9.5\n1º tri 2023,11.1\n2º tri 2023,9.7\n3º tri 2023,9.9\n4º tri 2023,10.6\n1º tri 2024,10.0\n2º tri 2024,7.6\n3º tri 2024,8.0\n4º tri 2024,7.5\n1º tri 2025,10.2\n2º tri 2025,8.5\n3º tri 2025,7.5\n4º tri 2025,8.0\n1º tri 2026,8.9\n2º tri 2026,8.3\n',
+    '04_rendimento.csv': 'periodo,Rendimento médio mensal real (R$)\n1º tri 2019,2231\n2º tri 2019,2134\n3º tri 2019,2074\n4º tri 2019,1957\n1º tri 2020,2011\n2º tri 2022,2197\n3º tri 2022,2449\n4º tri 2022,2393\n1º tri 2023,2656\n2º tri 2023,2618\n3º tri 2023,2532\n4º tri 2023,2497\n1º tri 2024,2528\n2º tri 2024,2589\n3º tri 2024,2583\n4º tri 2024,2583\n1º tri 2025,2667\n2º tri 2025,2537\n3º tri 2025,2586\n4º tri 2025,2681\n1º tri 2026,2690\n2º tri 2026,2547\n',
+    '05_informalidade.csv': 'periodo,Taxa de informalidade (%)\n1º tri 2019,58.8\n2º tri 2019,58.9\n3º tri 2019,60.2\n4º tri 2019,59.2\n1º tri 2020,58.7\n2º tri 2022,56.1\n3º tri 2022,54.4\n4º tri 2022,54.0\n1º tri 2023,52.4\n2º tri 2023,52.2\n3º tri 2023,55.0\n4º tri 2023,53.4\n1º tri 2024,54.8\n2º tri 2024,54.6\n3º tri 2024,54.4\n4º tri 2024,54.8\n1º tri 2025,54.5\n2º tri 2025,51.8\n3º tri 2025,52.7\n4º tri 2025,50.4\n1º tri 2026,50.2\n2º tri 2026,49.5\n',
+    '06_familias_tradicionais.csv': 'periodo,Indígenas,Quilombolas,Ciganas,Comunidades de terreiro\n2019,112,5522,306,857\n2020,115,5580,305,730\n2021,180,6439,294,716\n2022,264,7902,301,862\n2023,488,8823,283,1612\n2024,1016,10330,265,1434\n2025,1483,11733,320,1261\n2026/09,1665,12952,362,1232\n',
+    '07_injuria_racial.csv': 'periodo,Taxa por 100 mil habitantes\n2020,5.94\n2021,7.46\n2022,8.13\n2023,8.94\n2024,11.67\n2025,12.35\n',
+    '08_racismo.csv': 'periodo,Taxa por 100 mil habitantes\n2020,0.24\n2021,0.76\n2022,1.32\n2023,2.3\n2024,15.94\n2025,16.63\n',
+    '09_lgbtqia.csv': 'periodo,Lesão corporal dolosa,Homicídio doloso,Estupro,Homicídios dolosos – total Piauí\n2019,12,2,2,539\n2020,32,2,5,659\n2021,13,6,4,736\n2022,41,5,3,756\n2023,69,8,5,677\n2024,57,5,7,626\n2025,67,2,10,526\n',
+    '10_idhm.csv': 'periodo,IDHM,IDHM Renda,IDHM Educação,IDHM Longevidade,Série\n1991,0.362,0.488,0.164,0.595,Censo\n2000,0.484,0.556,0.301,0.676,Censo\n2010,0.646,0.635,0.547,0.777,Censo\n2016,0.685,0.655,0.642,0.766,PNAD (série antiga)\n2017,0.694,0.653,0.665,0.769,PNAD (série antiga)\n2018,0.699,0.658,0.671,0.772,PNAD (série antiga)\n2019,0.706,0.657,0.692,0.775,PNAD (série antiga)\n2020,0.708,0.659,0.7,0.768,PNAD (série antiga)\n2021,0.69,0.649,0.698,0.726,PNAD (série antiga)\n2023,0.761,0.699,0.731,0.863,Radar IDHM 2026 (série nova)\n2024,0.764,0.695,0.742,0.866,Radar IDHM 2026 (série nova)\n',
+    '11_gini.csv': 'periodo,Piauí,Brasil\n2019,0.538,0.543\n2020,0.474,0.523\n2021,0.515,0.543\n2022,0.518,0.517\n2023,0.549,0.517\n2024,0.493,0.504\n2025,0.508,0.511\n',
+    '12_situacao_rua.csv': 'periodo,Total de famílias,Renda até meio salário-mínimo,Renda acima de meio salário-mínimo\n2019,601,582,19\n2020,629,604,25\n2021,663,638,25\n2022,903,883,20\n2023,1309,1242,67\n2024,1655,1535,120\n2025,1753,1624,129\n2026/09,1998,1832,166\n',
+    '13_trabalho_infantil.csv': 'periodo,Crianças e adolescentes no CadÚnico em situação de trabalho infantil\n2023,770\n2024,443\n2025,218\n2026/08,134\n',
+    '14_trabalho_infantil_resgatados.csv': 'periodo,Crianças e adolescentes afastados pela fiscalização\n2017,8\n2018,12\n2019,15\n2020,4\n2021,1\n2022,14\n2023,25\n2024,11\n2025,57\n',
+    '15_idosos_denuncias.csv': 'periodo,Denúncias – Piauí\n2022,1157\n2023,1929\n2024,2434\n',
+    '16_idge.csv': 'periodo,SASC,Piauí (média dos órgãos),Posição da SASC no ranking,Total de órgãos\n03/2024,0.62,0.58,9,28\n04/2024,0.62,0.58,10,28\n05/2024,0.74,0.68,9,28\n06/2024,0.74,0.72,14,28\n07/2024,0.58,0.73,26,28\n08/2024,0.68,0.76,21,28\n09/2024,0.78,0.78,18,32\n10/2024,0.79,0.65,28,32\n11/2024,0.48,0.79,28,32\n12/2024,0.48,0.76,30,32\n01/2025,0.4,0.72,30,31\n02/2025,0.45,0.76,29,32\n03/2025,0.4,0.79,29,32\n04/2025,0.4,0.79,29,32\n05/2025,0.4,0.77,28,32\n06/2025,0.4,0.78,28,32\n07/2025,0.4,0.77,27,32\n08/2025,0.4,0.78,27,32\n09/2025,0.56,0.77,,\n10/2025,0.56,0.78,,\n11/2025,0.56,0.8,,\n',
+}
+
 st.set_page_config(
     page_title="Indicadores SASC – Piauí",
     page_icon="📊",
@@ -156,7 +176,10 @@ def carregar(arquivo: str) -> pd.DataFrame:
         caminho = pasta / arquivo
         if caminho.exists():
             return pd.read_csv(caminho, dtype={"periodo": str})
-    st.error(f"Arquivo de dados não encontrado: {arquivo}. Envie a pasta 'data' (ou o CSV) para o repositório no GitHub.")
+    if arquivo in DADOS_EMBUTIDOS:
+        import io
+        return pd.read_csv(io.StringIO(DADOS_EMBUTIDOS[arquivo]), dtype={"periodo": str})
+    st.error(f"Arquivo de dados não encontrado: {arquivo}.")
     st.stop()
 
 
@@ -243,6 +266,7 @@ def grafico(df, cfg, series, altura=460, rotulos=True, titulo=None):
                    pad=dict(t=14, l=0), font=dict(size=16, color="#1F2937")),
         legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0.01, font=dict(size=12)), showlegend=multiplas,
         plot_bgcolor="white", paper_bgcolor="white", hovermode="x unified" if multiplas else "closest",
+        template="plotly_white", font=dict(color="#374151"),
     )
     if separadas and demais:
         fig.update_layout(margin=dict(t=125), legend=dict(y=1.09))
@@ -295,6 +319,41 @@ st.markdown("""
   div[data-testid="stVerticalBlockBorderWrapper"] {background: #fff; border-radius: 14px !important;
         box-shadow: 0 1px 3px rgba(16,24,40,.06);}
   .stButton button {border-radius: 999px; font-size: .8rem; padding: 2px 12px;}
+
+  /* Força aparência clara mesmo se o tema do Streamlit estiver escuro */
+  .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {background: #F5F7FA !important; color: #1F2937 !important;}
+  [data-testid="stHeader"] {background: rgba(245,247,250,.9) !important;}
+  .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp p, .stApp label, .stApp li,
+  .stApp [data-testid="stMarkdownContainer"], .stApp [data-testid="stCaptionContainer"],
+  .stApp [data-testid="stWidgetLabel"] * {color: #1F2937 !important;}
+  .stApp [data-testid="stCaptionContainer"] * {color: #6B7280 !important;}
+  [data-testid="stSidebar"], [data-testid="stSidebar"] > div {background: #FFFFFF !important;}
+  [data-testid="stSidebar"] * {color: #1F2937 !important;}
+  [data-testid="stSidebar"] [data-testid="stCaptionContainer"] * {color: #6B7280 !important;}
+  div[data-testid="stVerticalBlockBorderWrapper"] {background: #FFFFFF !important; border-color: #E5E7EB !important;}
+  .kpi .titulo {color: #4B5563 !important;} .kpi .valor {color: #111827 !important;} .kpi .ref {color: #6B7280 !important;}
+  .bom {color: #1E7B3A !important;} .ruim {color: #B42318 !important;} .neutro {color: #475467 !important;}
+  .stButton button {background: #FFFFFF !important; color: #1F6F8B !important; border: 1px solid #1F6F8B !important;}
+  .stButton button:hover {background: #1F6F8B !important; color: #FFFFFF !important;}
+  .stButton button p {color: inherit !important;}
+  [data-baseweb="select"] > div, [data-baseweb="input"] > div {background: #FFFFFF !important; color: #1F2937 !important;}
+  [data-testid="stExpander"] details {background: #FFFFFF !important; border-color: #E5E7EB !important;}
+  [data-testid="stExpander"] summary * {color: #1F2937 !important;}
+  .stAlert {background: #E8F1F8 !important;} .stAlert * {color: #1F4E79 !important;}
+  .hero, .hero * {color: #FFFFFF !important;} .hero p {color: #E6F4F8 !important;}
+
+  [data-testid="stRadioOption"] > div > div:first-child {background-color: #FFFFFF !important; border: 2px solid #9CA3AF !important;}
+  [data-testid="stRadioOption"] > div > div:first-child > div {background-color: transparent !important;}
+  [data-testid="stRadioOption"][data-selected="true"] > div > div:first-child {background-color: #1F6F8B !important; border-color: #1F6F8B !important;}
+  [data-testid="stRadioOption"][data-selected="true"] > div > div:first-child > div {background-color: #FFFFFF !important;}
+  [data-testid="stRadioOption"][data-selected="true"] p {font-weight: 700; color: #1F6F8B !important;}
+  table.tabela {width: 100%; border-collapse: collapse; background: #FFFFFF; font-size: .9rem;}
+  table.tabela th {background: #1F6F8B; color: #FFFFFF !important; text-align: left; padding: 8px 10px;}
+  table.tabela td {padding: 7px 10px; border-bottom: 1px solid #E5E7EB; color: #1F2937;}
+  table.tabela tr:nth-child(even) td {background: #F8FAFC;}
+  .stDownloadButton button {background: #FFFFFF !important; color: #1F6F8B !important; border: 1px solid #1F6F8B !important;}
+  .stDownloadButton button p {color: inherit !important;}
+  [data-baseweb="tag"] {background: #1F6F8B !important;} [data-baseweb="tag"] * {color: #FFFFFF !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -351,7 +410,7 @@ def card(nome, cfg):
             </div>""",
         unsafe_allow_html=True,
     )
-    st.plotly_chart(sparkline(periodos, valores, cor), width="stretch",
+    st.plotly_chart(sparkline(periodos, valores, cor), width="stretch", theme=None,
                     config={"displayModeBar": False, "staticPlot": True}, key=f"spark_{nome}")
     st.button("Ver série completa →", key=f"btn_{nome}", on_click=ir_para, args=(nome,))
 
@@ -407,7 +466,7 @@ else:
 
     rotulos = st.toggle("Mostrar valores nos pontos", value=True)
     titulo_principal = series[0] if len(series) == 1 else escolha.split(" · ")[1]
-    st.plotly_chart(grafico(df, cfg, series, rotulos=rotulos, titulo=titulo_principal), width="stretch")
+    st.plotly_chart(grafico(df, cfg, series, rotulos=rotulos, titulo=titulo_principal), width="stretch", theme=None)
 
     if cfg.get("extra") and cfg["extra"] in df.columns:
         fig_extra = grafico(df, {**cfg, "unidade": cfg.get("unidade_extra", ""), "fmt": ",.1f" if "%" in cfg["extra"] else ",.0f",
@@ -416,7 +475,7 @@ else:
         if "Posição" in cfg["extra"]:
             fig_extra.update_yaxes(autorange="reversed", rangemode="normal", range=None)
             fig_extra.update_layout(title=dict(text="<b>Posição da SASC no ranking</b><br><span style='font-size:12px;color:#6B7280'>1º = melhor posição</span>"))
-        st.plotly_chart(fig_extra, width="stretch")
+        st.plotly_chart(fig_extra, width="stretch", theme=None)
 
     if cfg.get("nota"):
         st.info(cfg["nota"], icon="ℹ️")
@@ -428,6 +487,7 @@ else:
             if c not in ("periodo", "Série") and pd.api.types.is_numeric_dtype(tabela[c]):
                 f = ",.1f" if "%" in c else (",.0f" if ("Posição" in c or "Total de" in c) else cfg["fmt"])
                 tabela[c] = tabela[c].map(lambda v, f=f: br(v, f))
-        st.dataframe(tabela.rename(columns={"periodo": "Período"}), hide_index=True, width="stretch")
+        st.markdown(tabela.rename(columns={"periodo": "Período"}).to_html(index=False, classes="tabela", na_rep="–", escape=True),
+                    unsafe_allow_html=True)
         st.download_button("Baixar CSV", df.to_csv(index=False).encode("utf-8"),
                            file_name=cfg["arquivo"], mime="text/csv")

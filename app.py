@@ -1,4 +1,4 @@
-"""Painel de Indicadores Sociais – SASC / Piauí.
+"""Painel de Indicadores Sociais – Secretaria do Desenvolvimento e Assistência Social, Família e Combate à Fome – SASC / Governo do Piauí.
 
 Para rodar localmente:  streamlit run app.py
 Para atualizar os dados: edite os arquivos CSV da pasta data/ (uma linha por período).
@@ -424,7 +424,7 @@ def card(nome, cfg):
 # Layout
 # --------------------------------------------------------------------------------------
 st.sidebar.markdown("## 📊 Indicadores SASC")
-st.sidebar.caption("Secretaria da Assistência Social e Cidadania – Piauí")
+st.sidebar.markdown("<div style='font-size:.85rem;line-height:1.35;color:#4B5563;font-weight:600'>Secretaria do Desenvolvimento e Assistência Social, Família e Combate à Fome – SASC<br><span style='font-weight:400'>Governo do Estado do Piauí</span></div><div style='height:14px'></div>", unsafe_allow_html=True)
 paginas = ["Visão geral"] + list(INDICADORES)
 if "nav" not in st.session_state:
     st.session_state["nav"] = "Visão geral"
@@ -439,6 +439,7 @@ if escolha == "Visão geral":
     chips = "".join(f'<span class="chip">{TEMA_ICONE.get(t, "")} {t} · {len(v)}</span>' for t, v in temas.items())
     st.markdown(
         f"""<div class="hero">
+              <div style="font-size:.9rem;font-weight:600;letter-spacing:.3px;opacity:.9;margin-bottom:4px">SECRETARIA DO DESENVOLVIMENTO E ASSISTÊNCIA SOCIAL, FAMÍLIA E COMBATE À FOME – SASC</div>
               <h1>Painel de Indicadores Sociais – Piauí</h1>
               <p>Último valor disponível de cada indicador, variação em relação ao período anterior e tendência da série.
                  Clique em <b>Ver série completa</b> para detalhes, fonte e tabela.</p>

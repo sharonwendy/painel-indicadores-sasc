@@ -39,7 +39,8 @@ st.set_page_config(
 )
 
 # Paleta (mesma ordem de cores em todo o painel)
-CORES = ["#2E75B6", "#C55A11", "#7F7F7F", "#D9A400", "#548235", "#7030A0"]
+# Cores oficiais do Governo do Piauí (Manual de Identidade Visual 2023)
+CORES = ["#034EA2", "#EF4123", "#007932", "#FDB913", "#231F20", "#5B8BD0"]
 
 # --------------------------------------------------------------------------------------
 # Catálogo de indicadores: arquivo, unidade, formato, fonte e notas
@@ -266,7 +267,7 @@ def grafico(df, cfg, series, altura=460, rotulos=True, titulo=None):
                    pad=dict(t=14, l=0), font=dict(size=16, color="#1F2937")),
         legend=dict(orientation="h", y=1.02, yanchor="bottom", x=0.01, font=dict(size=12)), showlegend=multiplas,
         plot_bgcolor="white", paper_bgcolor="white", hovermode="x unified" if multiplas else "closest",
-        template="plotly_white", font=dict(color="#374151"),
+        template="plotly_white", font=dict(color="#374151", family="Montserrat, sans-serif"),
     )
     if separadas and demais:
         fig.update_layout(margin=dict(t=125), legend=dict(y=1.09))
@@ -276,12 +277,12 @@ def grafico(df, cfg, series, altura=460, rotulos=True, titulo=None):
 
 
 TEMA_COR = {
-    "Assistência social": "#1F6F8B",
-    "Trabalho e renda": "#C55A11",
-    "Povos e comunidades tradicionais": "#548235",
-    "Direitos humanos e segurança": "#7030A0",
-    "Desenvolvimento humano": "#2E75B6",
-    "Gestão": "#5B6B7F",
+    "Assistência social": "#034EA2",
+    "Trabalho e renda": "#007932",
+    "Povos e comunidades tradicionais": "#FDB913",
+    "Direitos humanos e segurança": "#EF4123",
+    "Desenvolvimento humano": "#034EA2",
+    "Gestão": "#231F20",
 }
 TEMA_ICONE = {
     "Assistência social": "🤝",
@@ -294,11 +295,15 @@ TEMA_ICONE = {
 
 st.markdown("""
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+  html, body, .stApp, .stApp *:not([class*="icon"]):not([data-testid*="Icon"]) {font-family: "Montserrat", sans-serif;}
+  .faixa {height: 7px; border-radius: 0 0 8px 8px; margin: 0 0 12px 0;
+          background: linear-gradient(90deg, #FDB913 0 33.3%, #EF4123 33.3% 66.6%, #007932 66.6% 100%);}
   .block-container {padding-top: 2rem; padding-bottom: 3rem; max-width: 1300px;}
   [data-testid="stSidebar"] {background: #FFFFFF; border-right: 1px solid #E5E7EB;}
   [data-testid="stSidebar"] .stRadio label p {font-size: 0.92rem;}
-  .hero {background: linear-gradient(120deg, #1F6F8B 0%, #2E9CB5 100%); color: #fff;
-         border-radius: 16px; padding: 28px 32px; margin-bottom: 8px;}
+  .hero {background: linear-gradient(120deg, #034EA2 0%, #0A63C9 100%); color: #fff;
+         border-radius: 16px 16px 0 0; padding: 28px 32px; margin-bottom: 0;}
   .hero h1 {color: #fff; font-size: 2rem; margin: 0 0 6px 0; padding: 0;}
   .hero p {color: #E6F4F8; margin: 0; font-size: 1rem;}
   .hero .chips {margin-top: 14px;}
@@ -333,8 +338,8 @@ st.markdown("""
   div[data-testid="stVerticalBlockBorderWrapper"] {background: #FFFFFF !important; border-color: #E5E7EB !important;}
   .kpi .titulo {color: #4B5563 !important;} .kpi .valor {color: #111827 !important;} .kpi .ref {color: #6B7280 !important;}
   .bom {color: #1E7B3A !important;} .ruim {color: #B42318 !important;} .neutro {color: #475467 !important;}
-  .stButton button {background: #FFFFFF !important; color: #1F6F8B !important; border: 1px solid #1F6F8B !important;}
-  .stButton button:hover {background: #1F6F8B !important; color: #FFFFFF !important;}
+  .stButton button {background: #FFFFFF !important; color: #034EA2 !important; border: 1px solid #034EA2 !important;}
+  .stButton button:hover {background: #034EA2 !important; color: #FFFFFF !important;}
   .stButton button p {color: inherit !important;}
   [data-baseweb="select"] > div, [data-baseweb="input"] > div {background: #FFFFFF !important; color: #1F2937 !important;}
   [data-testid="stExpander"] details {background: #FFFFFF !important; border-color: #E5E7EB !important;}
@@ -344,16 +349,16 @@ st.markdown("""
 
   [data-testid="stRadioOption"] > div > div:first-child {background-color: #FFFFFF !important; border: 2px solid #9CA3AF !important;}
   [data-testid="stRadioOption"] > div > div:first-child > div {background-color: transparent !important;}
-  [data-testid="stRadioOption"][data-selected="true"] > div > div:first-child {background-color: #1F6F8B !important; border-color: #1F6F8B !important;}
+  [data-testid="stRadioOption"][data-selected="true"] > div > div:first-child {background-color: #034EA2 !important; border-color: #034EA2 !important;}
   [data-testid="stRadioOption"][data-selected="true"] > div > div:first-child > div {background-color: #FFFFFF !important;}
-  [data-testid="stRadioOption"][data-selected="true"] p {font-weight: 700; color: #1F6F8B !important;}
+  [data-testid="stRadioOption"][data-selected="true"] p {font-weight: 700; color: #034EA2 !important;}
   table.tabela {width: 100%; border-collapse: collapse; background: #FFFFFF; font-size: .9rem;}
-  table.tabela th {background: #1F6F8B; color: #FFFFFF !important; text-align: left; padding: 8px 10px;}
+  table.tabela th {background: #034EA2; color: #FFFFFF !important; text-align: left; padding: 8px 10px;}
   table.tabela td {padding: 7px 10px; border-bottom: 1px solid #E5E7EB; color: #1F2937;}
   table.tabela tr:nth-child(even) td {background: #F8FAFC;}
-  .stDownloadButton button {background: #FFFFFF !important; color: #1F6F8B !important; border: 1px solid #1F6F8B !important;}
+  .stDownloadButton button {background: #FFFFFF !important; color: #034EA2 !important; border: 1px solid #034EA2 !important;}
   .stDownloadButton button p {color: inherit !important;}
-  [data-baseweb="tag"] {background: #1F6F8B !important;} [data-baseweb="tag"] * {color: #FFFFFF !important;}
+  [data-baseweb="tag"] {background: #034EA2 !important;} [data-baseweb="tag"] * {color: #FFFFFF !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -438,7 +443,7 @@ if escolha == "Visão geral":
               <p>Último valor disponível de cada indicador, variação em relação ao período anterior e tendência da série.
                  Clique em <b>Ver série completa</b> para detalhes, fonte e tabela.</p>
               <div class="chips">{chips}</div>
-            </div>""",
+            </div><div class="faixa"></div>""",
         unsafe_allow_html=True,
     )
     st.caption("🟢 verde = melhora · 🔴 vermelho = piora · ⚪ cinza = variação sem leitura de melhora/piora (ex.: número de beneficiários). Para desemprego, informalidade, desigualdade e violências, queda é melhora.")

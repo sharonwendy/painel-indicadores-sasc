@@ -30,6 +30,7 @@ DADOS_EMBUTIDOS = {
     '14_trabalho_infantil_resgatados.csv': 'periodo,Crianças e adolescentes afastados pela fiscalização\n2017,8\n2018,12\n2019,15\n2020,4\n2021,1\n2022,14\n2023,25\n2024,11\n2025,57\n',
     '15_idosos_denuncias.csv': 'periodo,Denúncias – Piauí\n2022,1157\n2023,1929\n2024,2434\n',
     '16_idge.csv': 'periodo,SASC,Piauí (média dos órgãos),Posição da SASC no ranking,Total de órgãos\n03/2024,0.62,0.58,9,28\n04/2024,0.62,0.58,10,28\n05/2024,0.74,0.68,9,28\n06/2024,0.74,0.72,14,28\n07/2024,0.58,0.73,26,28\n08/2024,0.68,0.76,21,28\n09/2024,0.78,0.78,18,32\n10/2024,0.79,0.65,28,32\n11/2024,0.48,0.79,28,32\n12/2024,0.48,0.76,30,32\n01/2025,0.4,0.72,30,31\n02/2025,0.45,0.76,29,32\n03/2025,0.4,0.79,29,32\n04/2025,0.4,0.79,29,32\n05/2025,0.4,0.77,28,32\n06/2025,0.4,0.78,28,32\n07/2025,0.4,0.77,27,32\n08/2025,0.4,0.78,27,32\n09/2025,0.56,0.77,,\n10/2025,0.56,0.78,,\n11/2025,0.56,0.8,,\n',
+    '17_metas_resultados.csv': 'objetivo,indicador,origem,unidade,fmt,sufixo,sentido,linha_base,ano_base,fonte,meta_2024,meta_2025,meta_2026,meta_2027,res_2024,res_2025,res_2026,ref_2026,painel,serie,nota\nOE 1 · Gestão do SUAS,Proporção de pessoas no Programa Bolsa Família,PPA,% da população,",.1f",%,menor,47.7,2023,IBGE / VIS Data,,,,,46.27,43.16,41.83,2026/08,2 · Programa Bolsa Família,Proporção (%),"Na base estratégica os resultados aparecem como 0,46; 0,43 e 0,42 (proporção). Aqui estão em %."\nOE 1 · Gestão do SUAS,Pessoas atendidas pelo BPC (idosos e pessoas com deficiência),PPA,pessoas,",.0f",,maior,93314,2023,VIS Data,105120,,,,105120,110144,113388,2026/08,1 · Benefício de Prestação Continuada (BPC),Total,\nOE 1 · Gestão do SUAS,Famílias beneficiadas – Cartão Social,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),200,5200,,,,439,3981,2026,,,\nOE 1 · Gestão do SUAS,Famílias beneficiadas – Auxílio Alimentação,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),,,,,,8984,,2026,,,\nOE 3 · Direitos humanos e inclusão,Taxa de registro de injúria racial,PPA,por 100 mil hab.,",.2f",,menor,8.08,2022,MDH,,,,,11.7,12.4,,2026,7 · Registros de injúria racial,Taxa por 100 mil habitantes,\nOE 3 · Direitos humanos e inclusão,Taxa de registro de racismo,PPA,por 100 mil hab.,",.2f",,menor,1.32,2022,Anuário Brasileiro de Segurança Pública (29/09/2026),,,,,15.94,16.63,,2026,8 · Registros de racismo,Taxa por 100 mil habitantes,\nOE 3 · Direitos humanos e inclusão,Homicídios dolosos de pessoas LGBTQIA+,PPA,registros,",.0f",,menor,5,2022,Anuário Brasileiro de Segurança Pública (29/09/2026),,,,,5,2,,2026,9 · Violência contra a população LGBTQIA+,Homicídio doloso,\nOE 3 · Direitos humanos e inclusão,Famílias de comunidades tradicionais no CadÚnico,PPA,famílias,",.0f",,maior,11206,2023,VIS Data (29/09/2026),,,,,13045,14797,16211,2026/09,6 · Famílias tradicionais no CadÚnico,_soma,\nOE 3 · Direitos humanos e inclusão,Pessoas capacitadas para o enfrentamento ao racismo institucional,CG154,pessoas,",.0f",,maior,1075,,Secretaria,,2200,2200,2200,,,,2026,,,\nOE 4 · Inclusão social e combate à pobreza,Índice de Gini,PPA,índice,",.3f",,menor,0.518,2022,IBGE / Cidades (01/10/2026),0.506,0.497,0.488,0.479,0.493,0.508,,2026,11 · Índice de Gini,Piauí,\nOE 4 · Inclusão social e combate à pobreza,Pessoas em extrema pobreza (renda de R$ 0 a R$ 89),PPA,%,",.2f",%,menor,40.51,2023,MDS / VIS Data,,,,31.5,,,,2026,,,\nOE 4 · Inclusão social e combate à pobreza,"Pessoas em situação de pobreza (renda de R$ 89,01 a R$ 178)",PPA,%,",.2f",%,menor,4.23,2023,MDS / VIS Data,,,,2.3,,,,2026,,,\nOE 4 · Inclusão social e combate à pobreza,Trabalho infantil (PNAD Contínua),PPA,%,",.1f",%,menor,8.6,2023,IBGE – PNAD Contínua,,,,,6.8,,,2026,,,\nOE 5 · Gestão e integração,Módulos implantados no SASC Integração,CG051,módulos,",.0f",,maior,0,,SASC,,5,,,,,,2026,,,\n',
 }
 
 st.set_page_config(
@@ -359,6 +360,14 @@ st.markdown("""
   .stDownloadButton button {background: #FFFFFF !important; color: #034EA2 !important; border: 1px solid #034EA2 !important;}
   .stDownloadButton button p {color: inherit !important;}
   [data-baseweb="tag"] {background: #034EA2 !important;} [data-baseweb="tag"] * {color: #FFFFFF !important;}
+  /* Esconde a barra de ferramentas do Streamlit (Deploy, menu ⋮) dentro do app */
+  [data-testid="stToolbar"], [data-testid="stAppDeployButton"], #MainMenu, footer {visibility: hidden !important; height: 0 !important;}
+  table.metas th {background: #F7D774; color: #1F2937 !important;}
+  table.metas td.n, table.metas th:nth-child(n+2):nth-child(-n+4) {text-align: right; white-space: nowrap;}
+  table.metas tr.grupo td {background: #EEF3FB !important; font-weight: 700; color: #034EA2 !important;}
+  table.metas .mini, .mini {font-size: .75rem; color: #6B7280 !important;}
+  .semmeta {background: #F2F4F7; color: #6B7280 !important;}
+  table.metas .badge {margin-top: 0; white-space: nowrap;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -421,18 +430,247 @@ def card(nome, cfg):
 
 
 # --------------------------------------------------------------------------------------
+# Metas e resultados (Base Estratégica 2026–2027)
+# --------------------------------------------------------------------------------------
+PAGINA_METAS = "🎯 Metas e resultados"
+ANOS_META = ["2024", "2025", "2026", "2027"]
+SITUACAO = {  # rótulo, classe css
+    "ok": ("Meta atingida", "bom"),
+    "no": ("Meta não atingida", "ruim"),
+    "pend": ("Aguardando resultado", "neutro"),
+    "sem": ("Sem meta definida", "semmeta"),
+}
+
+
+def _num(v):
+    try:
+        return None if v is None or pd.isna(v) or str(v).strip() == "" else float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def _txt(v):
+    return "" if v is None or (isinstance(v, float) and pd.isna(v)) else str(v)
+
+
+def avaliar(meta, res, sentido):
+    if meta is None:
+        return None
+    if res is None:
+        return "pend"
+    return "ok" if ((res <= meta) if sentido == "menor" else (res >= meta)) else "no"
+
+
+def analisar(linha):
+    """Organiza metas, resultados e a situação geral de um indicador."""
+    metas = {a: _num(linha[f"meta_{a}"]) for a in ANOS_META}
+    res = {a: _num(linha.get(f"res_{a}")) for a in ANOS_META}
+    anos_status = {a: avaliar(metas[a], res[a], linha["sentido"]) for a in ANOS_META}
+    avaliados = [a for a in ANOS_META if anos_status[a] in ("ok", "no")]
+    if avaliados:
+        situacao, ano_sit = anos_status[avaliados[-1]], avaliados[-1]
+    elif any(v is not None for v in metas.values()):
+        situacao, ano_sit = "pend", None
+    else:
+        situacao, ano_sit = "sem", None
+    ref26 = _txt(linha["ref_2026"]) or "2026"
+    rotulo = lambda a: ref26 if a == "2026" else a
+    ult = [a for a in ANOS_META if res[a] is not None]
+    return dict(metas=metas, res=res, anos_status=anos_status, situacao=situacao, ano_sit=ano_sit, rotulo=rotulo,
+                ultimo=(rotulo(ult[-1]), res[ult[-1]]) if ult else None,
+                meta_final=next(((a, metas[a]) for a in reversed(ANOS_META) if metas[a] is not None), None))
+
+
+def fmt_ind(linha, v):
+    return br(v, linha["fmt"], sufixo=_txt(linha["sufixo"]))
+
+
+def badge(chave):
+    rot, cls = SITUACAO[chave]
+    return f'<span class="badge {cls}">{rot}</span>'
+
+
+def grafico_metas(linha, info):
+    fig = go.Figure()
+    x_hist, y_hist = [], []
+    painel = _txt(linha["painel"])
+    if painel in INDICADORES:  # usa a série completa do painel, quando existe
+        cfgp = INDICADORES[painel]
+        dfp = carregar(cfgp["arquivo"])
+        col = _txt(linha["serie"])
+        if col == "_soma":
+            dfp = dfp.assign(_soma=dfp[series_do(cfgp, dfp)].sum(axis=1))
+        serie = dfp[["periodo", col]].dropna()
+        x_hist, y_hist = serie["periodo"].tolist(), serie[col].tolist()
+        if "Brasil" in dfp.columns:
+            fig.add_trace(go.Scatter(x=dfp["periodo"], y=dfp["Brasil"], name="Brasil", mode="lines+markers",
+                                     line=dict(color="#9CA3AF", width=2), marker=dict(size=6)))
+    else:
+        base, ano_b = _num(linha["linha_base"]), _num(linha["ano_base"])
+        if base is not None and ano_b is not None:
+            x_hist.append(str(int(ano_b))); y_hist.append(base)
+        for a in ANOS_META:
+            if info["res"][a] is not None:
+                x_hist.append(info["rotulo"](a)); y_hist.append(info["res"][a])
+    if x_hist:
+        fig.add_trace(go.Scatter(x=x_hist, y=y_hist, name="Resultado (Piauí)", mode="lines+markers+text",
+                                 line=dict(color="#034EA2", width=3), marker=dict(size=9),
+                                 text=[fmt_ind(linha, v) for v in y_hist], textposition="top center",
+                                 textfont=dict(color="#034EA2", size=12)))
+    xm = [a for a in ANOS_META if info["metas"][a] is not None]
+    if xm:
+        fig.add_trace(go.Scatter(x=xm, y=[info["metas"][a] for a in xm], name="Meta", mode="lines+markers+text",
+                                 line=dict(color="#EF4123", width=2, dash="dash"),
+                                 marker=dict(size=9, symbol="circle-open", line=dict(width=2)),
+                                 text=[fmt_ind(linha, info["metas"][a]) for a in xm], textposition="bottom center",
+                                 textfont=dict(color="#EF4123", size=12)))
+    cats = sorted(set(map(str, x_hist)) | set(xm))
+    todos = [v for t in fig.data for v in t.y if v is not None and not pd.isna(v)]
+    fig.update_layout(height=440, margin=dict(l=60, r=20, t=50, b=50), plot_bgcolor="#FFFFFF", paper_bgcolor="#FFFFFF",
+                      font=dict(family="Montserrat, sans-serif", color="#1F2937"),
+                      legend=dict(orientation="h", y=1.1, x=0), hovermode="x unified", separators=",.")
+    fig.update_xaxes(type="category", categoryorder="array", categoryarray=cats, showgrid=False)
+    if todos:
+        mn, mx = min(todos), max(todos)
+        pad = (mx - mn) * 0.2 or abs(mx) * 0.1 or 1
+        fig.update_yaxes(range=[mn - pad, mx + pad], gridcolor="#EEF0F3")
+    return fig
+
+
+def kpi_box(titulo, valor, cor, ref="", extra=""):
+    st.markdown(f'<div class="kpi" style="--cor:{cor}"><div class="titulo">{titulo}</div>'
+                f'<div class="valor">{valor}</div><div class="ref">{ref}</div>{extra}</div>', unsafe_allow_html=True)
+
+
+def pagina_metas():
+    df = carregar("17_metas_resultados.csv").copy()
+    infos = {l["indicador"]: analisar(l) for _, l in df.iterrows()}
+    st.markdown(
+        """<div class="hero">
+              <div style="font-size:.9rem;font-weight:600;letter-spacing:.3px;opacity:.9;margin-bottom:4px">BASE ESTRATÉGICA 2026–2027</div>
+              <h1>Metas e resultados</h1>
+              <p>Indicadores dos objetivos estratégicos da SASC: linha de base, metas anuais (2024–2027) e resultados alcançados.</p>
+            </div><div class="faixa"></div>""", unsafe_allow_html=True)
+
+    objetivos = ["Todos os objetivos"] + list(dict.fromkeys(df["objetivo"]))
+    obj = st.selectbox("Objetivo estratégico", objetivos)
+    sel = df if obj == objetivos[0] else df[df["objetivo"] == obj]
+
+    cont = pd.Series([infos[n]["situacao"] for n in sel["indicador"]]).value_counts()
+    kpis = [("Indicadores monitorados", len(sel), "#034EA2"), ("Metas atingidas", cont.get("ok", 0), "#007932"),
+            ("Metas não atingidas", cont.get("no", 0), "#EF4123"),
+            ("Aguardando resultado", cont.get("pend", 0), "#FDB913"), ("Sem meta definida", cont.get("sem", 0), "#9CA3AF")]
+    for c, (t, v, cor) in zip(st.columns(len(kpis)), kpis):
+        with c, st.container(border=True):
+            kpi_box(t, v, cor)
+    st.caption("A situação considera o último ano que tem meta e resultado. Para Gini, pobreza, violências e trabalho infantil, "
+               "a meta é atingida quando o resultado fica igual ou abaixo dela; para os demais, igual ou acima.")
+
+    # Quadro geral
+    linhas_html = []
+    for objetivo, grupo in sel.groupby("objetivo", sort=False):
+        linhas_html.append(f'<tr class="grupo"><td colspan="6">{objetivo}</td></tr>')
+        for _, l in grupo.iterrows():
+            i = infos[l["indicador"]]
+            base = _num(l["linha_base"])
+            ano_b = _num(l["ano_base"])
+            base_txt = "–" if base is None else fmt_ind(l, base) + (f" ({int(ano_b)})" if ano_b else "")
+            a = i["ano_sit"]
+            if a:
+                meta_txt, res_txt = f"{fmt_ind(l, i['metas'][a])} ({a})", f"{fmt_ind(l, i['res'][a])} ({a})"
+            else:
+                meta_txt = f"{fmt_ind(l, i['meta_final'][1])} ({i['meta_final'][0]})" if i["meta_final"] else "–"
+                res_txt = f"{fmt_ind(l, i['ultimo'][1])} ({i['ultimo'][0]})" if i["ultimo"] else "–"
+            linhas_html.append(
+                f"<tr><td><b>{l['indicador']}</b><br><span class='mini'>{l['origem']} · {l['unidade']}</span></td>"
+                f"<td class='n'>{base_txt}</td><td class='n'>{meta_txt}</td><td class='n'>{res_txt}</td>"
+                f"<td>{badge(i['situacao'])}</td><td class='mini'>{l['fonte']}</td></tr>")
+    st.markdown(f"""<div style="overflow-x:auto"><table class="tabela metas">
+        <thead><tr><th>Indicador</th><th>Linha de base</th><th>Meta</th><th>Resultado</th><th>Situação</th><th>Fonte</th></tr></thead>
+        <tbody>{''.join(linhas_html)}</tbody></table></div>""", unsafe_allow_html=True)
+
+    # Detalhe de um indicador
+    st.markdown('<div class="tema"><div class="barra" style="background:#FDB913"></div><h3>Detalhar indicador</h3></div>',
+                unsafe_allow_html=True)
+    nomes = sel["indicador"].tolist()
+    nome = st.selectbox("Indicador", nomes, index=nomes.index("Índice de Gini") if "Índice de Gini" in nomes else 0)
+    l = sel[sel["indicador"] == nome].iloc[0]
+    i = infos[nome]
+    base, ano_b = _num(l["linha_base"]), _num(l["ano_base"])
+
+    cards = []
+    if base is not None:
+        cards.append(("Linha de base" + (f" ({int(ano_b)})" if ano_b else ""), fmt_ind(l, base), "#9CA3AF", l["fonte"], ""))
+    if i["ultimo"]:
+        cards.append((f"Resultado mais recente ({i['ultimo'][0]})", fmt_ind(l, i["ultimo"][1]), "#034EA2", l["unidade"], ""))
+    if i["ano_sit"]:
+        a = i["ano_sit"]
+        dif = i["res"][a] - i["metas"][a]
+        cards.append((f"Meta {a}", fmt_ind(l, i["metas"][a]), "#FDB913",
+                      f"Resultado {a}: {fmt_ind(l, i['res'][a])} ({'+' if dif > 0 else ''}{fmt_ind(l, dif)})", badge(i["situacao"])))
+    if i["meta_final"]:
+        cards.append((f"Meta final ({i['meta_final'][0]})", fmt_ind(l, i["meta_final"][1]), "#007932", l["unidade"], ""))
+    for c, (t, v, cor, ref, extra) in zip(st.columns(max(len(cards), 1)), cards):
+        with c, st.container(border=True):
+            kpi_box(t, v, cor, ref, extra)
+
+    g1, g2 = st.columns([2, 1], gap="medium")
+    with g1, st.container(border=True):
+        st.markdown(f"**Evolução e metas – {nome}**")
+        st.plotly_chart(grafico_metas(l, i), width="stretch", theme=None, config={"displayModeBar": False},
+                        key=f"metas_{nome}")
+    with g2, st.container(border=True):
+        st.markdown("**Avanço rumo à meta final**")
+        mf, ult = i["meta_final"], i["ultimo"]
+        if base is not None and mf and ult and mf[1] != base:
+            pct = (ult[1] - base) / (mf[1] - base) * 100
+            larg = max(0, min(pct, 100))
+            st.markdown(f"""<div style="height:14px;background:#E5E7EB;border-radius:7px;overflow:hidden;margin:10px 0 6px">
+                <div style="width:{larg:.0f}%;height:100%;background:{'#007932' if pct >= 100 else '#FDB913'}"></div></div>
+                <div style="font-size:.9rem"><b>{br(pct, ',.0f')}%</b> do caminho entre a linha de base ({fmt_ind(l, base)})
+                e a meta de {mf[0]} ({fmt_ind(l, mf[1])}).</div>""", unsafe_allow_html=True)
+        else:
+            st.caption("Sem dados suficientes para calcular o avanço (é preciso linha de base, resultado e meta).")
+        st.markdown(f"<div style='margin-top:14px'><b>Situação:</b> {badge(i['situacao'])}</div>"
+                    f"<div class='mini' style='margin-top:12px'><b>Objetivo:</b> {l['objetivo']}<br>"
+                    f"<b>Origem:</b> {l['origem']}<br><b>Fonte:</b> {l['fonte']}</div>", unsafe_allow_html=True)
+        if _txt(l["nota"]):
+            st.caption(l["nota"])
+
+    linhas = []
+    for a in ANOS_META:
+        m, r, s = i["metas"][a], i["res"][a], i["anos_status"][a]
+        if m is None and r is None:
+            continue
+        dif = "–" if (m is None or r is None) else (("+" if r - m > 0 else "") + fmt_ind(l, r - m))
+        linhas.append(f"<tr><td>{i['rotulo'](a) if r is not None else a}</td>"
+                      f"<td class='n'>{fmt_ind(l, m) if m is not None else '–'}</td>"
+                      f"<td class='n'><b>{fmt_ind(l, r) if r is not None else '–'}</b></td><td class='n'>{dif}</td>"
+                      f"<td>{badge(s) if s else badge('sem')}</td></tr>")
+    if linhas:
+        st.markdown("**Metas e resultados por ano**")
+        st.markdown(f"""<table class="tabela metas"><thead><tr><th>Ano</th><th>Meta</th><th>Resultado</th><th>Diferença</th>
+            <th>Situação</th></tr></thead><tbody>{''.join(linhas)}</tbody></table>""", unsafe_allow_html=True)
+    st.caption("Fonte: Base Estratégica 2026–2027 (SASC). Resultados de 2026 são parciais (posição do mês indicado).")
+    st.download_button("Baixar CSV de metas e resultados", df.to_csv(index=False).encode("utf-8"),
+                       file_name="17_metas_resultados.csv", mime="text/csv")
+
+
+# --------------------------------------------------------------------------------------
 # Layout
 # --------------------------------------------------------------------------------------
 st.sidebar.markdown("## 📊 Indicadores SASC")
 st.sidebar.markdown("<div style='font-size:.85rem;line-height:1.35;color:#4B5563;font-weight:600'>Secretaria do Desenvolvimento e Assistência Social, Família e Combate à Fome – SASC<br><span style='font-weight:400'>Governo do Estado do Piauí</span></div><div style='height:14px'></div>", unsafe_allow_html=True)
-paginas = ["Visão geral"] + list(INDICADORES)
+paginas = ["Visão geral", PAGINA_METAS] + list(INDICADORES)
 if "nav" not in st.session_state:
     st.session_state["nav"] = "Visão geral"
 escolha = st.sidebar.radio("Escolha o indicador", paginas, key="nav", label_visibility="collapsed")
 st.sidebar.divider()
 st.sidebar.caption("Dados atualizados em outubro de 2026.")
 
-if escolha == "Visão geral":
+if escolha == PAGINA_METAS:
+    pagina_metas()
+elif escolha == "Visão geral":
     temas = {}
     for nome, cfg in INDICADORES.items():
         temas.setdefault(cfg["tema"], []).append((nome, cfg))

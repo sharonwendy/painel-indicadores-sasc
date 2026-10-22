@@ -542,6 +542,74 @@ def kpi_box(titulo, valor, cor, ref="", extra=""):
                 f'<div class="valor">{valor}</div><div class="ref">{ref}</div>{extra}</div>', unsafe_allow_html=True)
 
 
+def metas_do_indicador(nome_painel):
+    """Linha da Base Estratégica ligada a um indicador do painel (só se tiver alguma meta)."""
+    df = carregar("17_metas_resultados.csv")
+    achados = df[df["painel"].astype(str) == nome_painel]
+    for _, l in achados.iterrows():
+        if any(_num(l[f"meta_{a}"]) is not None for a in ANOS_META):
+            return l
+    return None
+
+
+def adicionar_metas(fig, df, series, linha):
+    """Acrescenta a linha tracejada de metas ao gráfico de um indicador."""
+    info = analisar(linha)
+    xm = [a for a in ANOS_META if info["metas"][a] is not None]
+    ym = [info["metas"][a] for a in xm]
+    fig.add_trace(go.Scatter(x=xm, y=ym, name="Meta (Base Estratégica)", mode="lines+markers+text",
+                             line=dict(color="#B45309", width=2, dash="dash"),
+                             marker=dict(size=9, symbol="circle-open", line=dict(width=2, color="#B45309")),
+                             text=[fmt_ind(linha, v) for v in ym], textposition="bottom center",
+                             textfont=dict(size=12, color="#B45309"), cliponaxis=False,
+                             hovertemplate="%{x}<br>Meta: %{text}<extra></extra>"))
+    cats = list(df["periodo"].astype(str))
+    cats += [a for a in xm if a not in cats]
+    valores = [v for s in series for v in df[s].dropna()] + ym
+    mn, mx = min(valores), max(valores)
+    pad = (mx - mn) * 0.2 or abs(mx) * 0.1 or 1
+    fig.update_xaxes(categoryorder="array", categoryarray=sorted(cats))
+    fig.update_yaxes(range=[mn - pad, mx + pad])
+    fig.update_layout(showlegend=True)
+
+
+def bloco_metas_indicador(linha):
+    """Quadro de metas x resultados mostrado na página do indicador."""
+    info = analisar(linha)
+    with st.container(border=True):
+        st.markdown(f"#### 🎯 Metas e resultados – Base Estratégica 2026–2027 &nbsp; {badge(info['situacao'])}",
+                    unsafe_allow_html=True)
+        base, ano_b = _num(linha["linha_base"]), _num(linha["ano_base"])
+        c1, c2 = st.columns([1, 2], gap="medium")
+        with c1:
+            if base is not None:
+                st.markdown(f"**Linha de base:** {fmt_ind(linha, base)}" + (f" ({int(ano_b)})" if ano_b else ""))
+            if info["meta_final"]:
+                st.markdown(f"**Meta final ({info['meta_final'][0]}):** {fmt_ind(linha, info['meta_final'][1])}")
+            mf, ult = info["meta_final"], info["ultimo"]
+            if base is not None and mf and ult and mf[1] != base:
+                pct = (ult[1] - base) / (mf[1] - base) * 100
+                st.markdown(f"""<div style="height:12px;background:#E5E7EB;border-radius:6px;overflow:hidden;margin:8px 0 4px">
+                    <div style="width:{max(0, min(pct, 100)):.0f}%;height:100%;background:{'#007932' if pct >= 100 else '#FDB913'}"></div></div>
+                    <div style="font-size:.85rem"><b>{br(pct, ',.0f')}%</b> do caminho até a meta de {mf[0]}</div>""",
+                            unsafe_allow_html=True)
+            st.button("Ver todas as metas →", key="ir_metas", on_click=ir_para, args=(PAGINA_METAS,))
+        with c2:
+            linhas = []
+            for a in ANOS_META:
+                m, r, s = info["metas"][a], info["res"][a], info["anos_status"][a]
+                if m is None and r is None:
+                    continue
+                dif = "–" if (m is None or r is None) else (("+" if r - m > 0 else "") + fmt_ind(linha, r - m))
+                linhas.append(f"<tr><td>{info['rotulo'](a) if r is not None else a}</td>"
+                              f"<td class='n'>{fmt_ind(linha, m) if m is not None else '–'}</td>"
+                              f"<td class='n'><b>{fmt_ind(linha, r) if r is not None else '–'}</b></td>"
+                              f"<td class='n'>{dif}</td><td>{badge(s) if s else badge('sem')}</td></tr>")
+            st.markdown(f"""<table class="tabela metas"><thead><tr><th>Ano</th><th>Meta</th><th>Resultado</th>
+                <th>Diferença</th><th>Situação</th></tr></thead><tbody>{''.join(linhas)}</tbody></table>""",
+                        unsafe_allow_html=True)
+
+
 def pagina_metas():
     df = carregar("17_metas_resultados.csv").copy()
     infos = {l["indicador"]: analisar(l) for _, l in df.iterrows()}
@@ -710,7 +778,13 @@ else:
 
     rotulos = st.toggle("Mostrar valores nos pontos", value=True)
     titulo_principal = series[0] if len(series) == 1 else escolha.split(" · ")[1]
-    st.plotly_chart(grafico(df, cfg, series, rotulos=rotulos, titulo=titulo_principal), width="stretch", theme=None)
+    fig_principal = grafico(df, cfg, series, rotulos=rotulos, titulo=titulo_principal)
+    meta_linha = metas_do_indicador(escolha)
+    if meta_linha is not None and _txt(meta_linha["serie"]) in series:
+        adicionar_metas(fig_principal, df, series, meta_linha)
+    st.plotly_chart(fig_principal, width="stretch", theme=None)
+    if meta_linha is not None:
+        bloco_metas_indicador(meta_linha)
 
     if cfg.get("extra") and cfg["extra"] in df.columns:
         fig_extra = grafico(df, {**cfg, "unidade": cfg.get("unidade_extra", ""), "fmt": ",.1f" if "%" in cfg["extra"] else ",.0f",

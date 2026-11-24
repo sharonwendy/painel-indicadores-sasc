@@ -1,7 +1,7 @@
 objetivo,indicador,origem,unidade,fmt,sufixo,sentido,linha_base,ano_base,fonte,meta_2024,meta_2025,meta_2026,meta_2027,res_2024,res_2025,res_2026,ref_2026,painel,serie,nota
 OE 1 · Gestão do SUAS,Proporção de pessoas no Programa Bolsa Família,PPA,% da população,",.1f",%,menor,47.7,2023,IBGE / VIS Data,,,,,46.27,43.16,41.83,2026/08,2 · Programa Bolsa Família,Proporção (%),"Na base estratégica os resultados aparecem como 0,46; 0,43 e 0,42 (proporção). Aqui estão em %."
 OE 1 · Gestão do SUAS,Pessoas atendidas pelo BPC (idosos e pessoas com deficiência),PPA,pessoas,",.0f",,maior,93314,2023,VIS Data,,,,,105120,110144,113388,2026/08,1 · Benefício de Prestação Continuada (BPC),Total,
-OE 1 · Gestão do SUAS,Famílias beneficiadas – Cartão Social,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),200,5200,,,,439,4521,2026/11,,,
+OE 1 · Gestão do SUAS,Famílias beneficiadas – Cartão Social,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),200,5200,,,,439,4521,2026/10,,,
 OE 1 · Gestão do SUAS,Famílias beneficiadas – Auxílio Alimentação,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),,,,,,8984,,2026,,,
 OE 3 · Direitos humanos e inclusão,Taxa de registro de injúria racial,PPA,por 100 mil hab.,",.2f",,menor,8.08,2022,MDH,,,,,11.7,12.4,,2026,7 · Registros de injúria racial,Taxa por 100 mil habitantes,
 OE 3 · Direitos humanos e inclusão,Taxa de registro de racismo,PPA,por 100 mil hab.,",.2f",,menor,1.32,2022,Anuário Brasileiro de Segurança Pública (29/09/2026),,,,,15.94,16.63,,2026,8 · Registros de racismo,Taxa por 100 mil habitantes,

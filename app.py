@@ -172,12 +172,17 @@ INDICADORES = {
 
 
 @st.cache_data
+def _ler_csv(caminho: str, modificado: float) -> pd.DataFrame:
+    return pd.read_csv(caminho, dtype={"periodo": str})
+
+
 def carregar(arquivo: str) -> pd.DataFrame:
-    # Procura o CSV na pasta data/ e, se não achar, ao lado do app.py (caso a pasta não tenha subido no GitHub)
+    # Procura o CSV na pasta data/ e, se não achar, ao lado do app.py (caso a pasta não tenha subido no GitHub).
+    # A data de modificação do arquivo entra no cache: quando um CSV novo sobe no GitHub, o painel relê na hora.
     for pasta in (DATA, Path(__file__).parent):
         caminho = pasta / arquivo
         if caminho.exists():
-            return pd.read_csv(caminho, dtype={"periodo": str})
+            return _ler_csv(str(caminho), caminho.stat().st_mtime).copy()
     if arquivo in DADOS_EMBUTIDOS:
         import io
         return pd.read_csv(io.StringIO(DADOS_EMBUTIDOS[arquivo]), dtype={"periodo": str})

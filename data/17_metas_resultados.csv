@@ -1,0 +1,15 @@
+objetivo,indicador,origem,unidade,fmt,sufixo,sentido,linha_base,ano_base,fonte,meta_2024,meta_2025,meta_2026,meta_2027,res_2024,res_2025,res_2026,ref_2026,painel,serie,nota
+OE 1 · Gestão do SUAS,Proporção de pessoas no Programa Bolsa Família,PPA,% da população,",.1f",%,menor,47.7,2023,IBGE / VIS Data,,,,,46.27,43.16,41.83,2026/08,2 · Programa Bolsa Família,Proporção (%),"Na base estratégica os resultados aparecem como 0,46; 0,43 e 0,42 (proporção). Aqui estão em %."
+OE 1 · Gestão do SUAS,Pessoas atendidas pelo BPC (idosos e pessoas com deficiência),PPA,pessoas,",.0f",,maior,93314,2023,VIS Data,,,,,105120,110144,113388,2026/08,1 · Benefício de Prestação Continuada (BPC),Total,
+OE 1 · Gestão do SUAS,Famílias beneficiadas – Cartão Social,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),200,5200,,,,439,3981,2026,,,
+OE 1 · Gestão do SUAS,Famílias beneficiadas – Auxílio Alimentação,CG053,famílias,",.0f",,maior,,,SASC Integração (29/09/2026),,,,,,8984,,2026,,,
+OE 3 · Direitos humanos e inclusão,Taxa de registro de injúria racial,PPA,por 100 mil hab.,",.2f",,menor,8.08,2022,MDH,,,,,11.7,12.4,,2026,7 · Registros de injúria racial,Taxa por 100 mil habitantes,
+OE 3 · Direitos humanos e inclusão,Taxa de registro de racismo,PPA,por 100 mil hab.,",.2f",,menor,1.32,2022,Anuário Brasileiro de Segurança Pública (29/09/2026),,,,,15.94,16.63,,2026,8 · Registros de racismo,Taxa por 100 mil habitantes,
+OE 3 · Direitos humanos e inclusão,Homicídios dolosos de pessoas LGBTQIA+,PPA,registros,",.0f",,menor,5,2022,Anuário Brasileiro de Segurança Pública (29/09/2026),,,,,5,2,,2026,9 · Violência contra a população LGBTQIA+,Homicídio doloso,
+OE 3 · Direitos humanos e inclusão,Famílias de comunidades tradicionais no CadÚnico,PPA,famílias,",.0f",,maior,11206,2023,VIS Data (29/09/2026),,,,,13045,14797,16211,2026/09,6 · Famílias tradicionais no CadÚnico,_soma,
+OE 3 · Direitos humanos e inclusão,Pessoas capacitadas para o enfrentamento ao racismo institucional,CG154,pessoas,",.0f",,maior,1075,,Secretaria,,2200,2200,2200,,,,2026,,,
+OE 4 · Inclusão social e combate à pobreza,Índice de Gini,PPA,índice,",.3f",,menor,0.518,2022,IBGE / Cidades (01/10/2026),0.506,0.497,0.488,0.479,0.493,0.508,,2026,11 · Índice de Gini,Piauí,
+OE 4 · Inclusão social e combate à pobreza,Pessoas em extrema pobreza (renda de R$ 0 a R$ 89),PPA,%,",.2f",%,menor,40.51,2023,MDS / VIS Data,,,,31.5,,,,2026,,,
+OE 4 · Inclusão social e combate à pobreza,"Pessoas em situação de pobreza (renda de R$ 89,01 a R$ 178)",PPA,%,",.2f",%,menor,4.23,2023,MDS / VIS Data,,,,2.3,,,,2026,,,
+OE 4 · Inclusão social e combate à pobreza,Trabalho infantil (PNAD Contínua),PPA,%,",.1f",%,menor,8.6,2023,IBGE – PNAD Contínua,,,,,6.8,,,2026,,,
+OE 5 · Gestão e integração,Módulos implantados no SASC Integração,CG051,módulos,",.0f",,maior,0,,SASC,,5,,,,,,2026,,,
